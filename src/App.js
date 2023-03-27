@@ -1,11 +1,9 @@
 import "./App.css";
-import Header from "./Header";
+import Student from "./components/Student";
 function App() {
-  let name = "Suman";
   return (
     <div className="App">
-      <Header />
-      <h1>{name}</h1>
+      <Student name="Suman" age={25} />
     </div>
   );
 }
