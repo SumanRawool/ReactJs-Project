@@ -3,7 +3,7 @@ import Student from "./components/Student";
 function App() {
   return (
     <div className="App">
-      <Student name="Suman" age={25} />
+      <Student />
     </div>
   );
 }
