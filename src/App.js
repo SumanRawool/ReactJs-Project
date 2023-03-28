@@ -1,32 +1,28 @@
 import { element } from "prop-types";
 import "./App.css";
 import Header from "./components/Header";
-import Movie from "./components/Movie";
-import movies from "./movie.json";
+import React, { useState } from "react";
 function App() {
-  let login = true;
-
+  const [num, setNum] = useState(2);
+  function inc(n) {
+    setNum(num + n);
+  }
+  function dec(n) {
+    setNum(num - n);
+  }
   return (
     <div className="App">
-      {(() => {
-        if (login) {
-          return <h1 style={{ color: "black" }}>Dekh le bhai</h1>;
-        } else {
-          return <h1 style={{ color: "black" }}>Dekh mat liyo</h1>;
-        }
-      })()}
       <Header />
       <div className="main">
-        {movies.map((element, index) => {
-          return (
-            <Movie
-              key={index}
-              title={element.Title}
-              year={element.Year}
-              img={element.Poster}
-            />
-          );
-        })}
+        <h1 className="heading">{num}</h1>
+        <div className="buttons">
+          <button className="btn" onClick={() => inc(2)}>
+            increment
+          </button>
+          <button className="btn" onClick={() => dec(1)}>
+            decrement
+          </button>
+        </div>
       </div>
     </div>
   );

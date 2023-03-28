@@ -19,11 +19,31 @@ h1 {
 }
 .main {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
   flex-wrap: wrap;
   padding: 14px;
 }
-.movie {
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  background-color: rgb(51, 51, 175);
+  color: white;
+  padding: 5px;
+  margin: 5px;
+}
+
+.heading {
+  color: black;
+  font-size: 80px;
+  margin: 10px;
+}
+/* .movie {
   background-color: rgb(219, 212, 212);
   color: black;
   border: 1px solid gray;
@@ -35,4 +55,4 @@ h1 {
 .movie img {
   height: 220px;
   width: 100%;
-}
+} */
