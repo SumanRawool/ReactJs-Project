@@ -4,8 +4,17 @@ import Header from "./components/Header";
 import Movie from "./components/Movie";
 import movies from "./movie.json";
 function App() {
+  let login = true;
+
   return (
     <div className="App">
+      {(() => {
+        if (login) {
+          return <h1 style={{ color: "black" }}>Dekh le bhai</h1>;
+        } else {
+          return <h1 style={{ color: "black" }}>Dekh mat liyo</h1>;
+        }
+      })()}
       <Header />
       <div className="main">
         {movies.map((element, index) => {
