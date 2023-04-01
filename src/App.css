@@ -10,6 +10,7 @@
   background-color: #192a56;
   padding: 14px;
   width: 100%;
+  text-align: center;
 }
 
 h1 {
@@ -20,15 +21,7 @@ h1 {
 }
 .data {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100%;
-  margin-top: 20px;
-}
-.data_val {
-  display: flex;
   justify-content: space-between;
-  width: 60%;
-  padding: 0px 9px 0px 9px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 5px;
 }
