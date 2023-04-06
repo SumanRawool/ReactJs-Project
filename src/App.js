@@ -1,35 +1,23 @@
 import "./App.css";
 import Header from "./components/Header";
-import Home from "./components/Home";
-import Contact from "./components/Contact";
-import About from "./components/About";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Error from "./components/Error";
-import Insta from "./components/Insta";
-import Mail from "./components/Mail";
-import UserDetails from "./components/UserDetails";
+import ComA from "./components/ComA";
+import { useState, createContext } from "react";
+
+const AppState = createContext();
+
 function App() {
+  const [data, setData] = useState("Web3Mantra");
+  const [name, setName] = useState({ name: "suman", age: 20 });
   return (
-    <Router>
-      <div>
+    <div>
+      <AppState.Provider value={{ data, name }}>
         <Header />
-        <Routes>
-          {/* Home */}
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/app/:userId" element={<UserDetails />} />
-          {/* About */}
-          <Route path="/about" element={<About />} />
-          {/* Contact */}
-          <Route path="/contact" element={<Contact />}>
-            <Route index element={<Insta />} />
-            <Route index path="insta" element={<Insta />} />
-            <Route path="mail" element={<Mail />} />
-          </Route>
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </div>
-    </Router>
+
+        <ComA />
+      </AppState.Provider>
+    </div>
   );
 }
 
 export default App;
+export { AppState };
