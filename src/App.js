@@ -1,31 +1,39 @@
 import "./App.css";
 import Header from "./components/Header";
-import { useReducer } from "react";
-
-const reducer = (state, action) => {
-  if (action.type == "INC") {
-    return state + 2;
-  } else if (action.type == "DEC") {
-    return state - 2;
-  } else if (action.type == "MUL") {
-    return state * 2;
-  }
-  console.log("state:", state);
-  console.log("action: ", action);
-  return state;
-};
-
+import { useEffect, useState } from "react";
+import { TailSpin } from "react-loader-spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
-  const [state, dispatch] = useReducer(reducer, 0);
-
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    setLoading(true);
+    async function getData() {
+      const res = await fetch(
+        "https://hub.dummyapis.com/employee?noofRecords=1000&idStarts=1001"
+      );
+      const finalres = await res.json();
+      setData(finalres);
+      setLoading(false);
+      toast.success("Successfully fetch data");
+    }
+    getData();
+  }, []);
   return (
-    <div>
+    <>
       <Header />
-      <h1>{state}</h1>
-      <button onClick={() => dispatch({ type: "INC" })}>Increment</button>
-      <button onClick={() => dispatch({ type: "DEC" })}>Decrement</button>
-      <button onClick={() => dispatch({ type: "MUL" })}>Mutiply</button>
-    </div>
+      <ToastContainer />
+      <div className="main">
+        {loading ? (
+          <TailSpin />
+        ) : (
+          data.map((e, i) => {
+            return <p>{e.email}</p>;
+          })
+        )}
+      </div>
+    </>
   );
 }
 
