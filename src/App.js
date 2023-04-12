@@ -1,40 +1,39 @@
 import "./App.css";
-import Header from "./components/Header";
-import { useEffect, useState } from "react";
-import { TailSpin } from "react-loader-spinner";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-function App() {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    setLoading(true);
-    async function getData() {
-      const res = await fetch(
-        "https://hub.dummyapis.com/employee?noofRecords=1000&idStarts=1001"
-      );
-      const finalres = await res.json();
-      setData(finalres);
-      setLoading(false);
-      toast.success("Successfully fetch data");
+import React from "react";
+import Comp from "./Comp";
+class App extends React.Component {
+  state = {
+    name: "",
+    count: 0,
+    show: true,
+  };
+  inc = () => {
+    this.setState((prevState) => ({ count: prevState.count + 1 }));
+  };
+
+  render() {
+    let child;
+    if (this.state.show) {
+      child = <Comp />;
     }
-    getData();
-  }, []);
-  return (
-    <>
-      <Header />
-      <ToastContainer />
-      <div className="main">
-        {loading ? (
-          <TailSpin />
-        ) : (
-          data.map((e, i) => {
-            return <p>{e.email}</p>;
-          })
-        )}
-      </div>
-    </>
-  );
+    return (
+      <>
+        <h1>Class Components</h1>
+        <h1>{this.state.name}</h1>
+        <h1>{this.state.prevName}</h1>
+        <input
+          value={this.state.name}
+          onChange={(e) => this.setState({ name: e.target.value })}
+        />
+        <h1>{this.state.count}</h1>
+        <button onClick={this.inc}>INC</button>
+        {child}
+        <button onClick={() => this.setState({ show: false })}>
+          Delete Comp
+        </button>
+      </>
+    );
+  }
 }
 
 export default App;
